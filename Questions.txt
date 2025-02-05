@@ -1,3 +1,8 @@
+login Credentitals:-
+
+"username- nexus"
+"password- nexus123"
+
 Questions that you can ask to Nexus AI
  
 "hi"
