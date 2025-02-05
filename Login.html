@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus AI Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);;
+        }
+
+        .login-container {
+            height: 460px;
+            width: 230px;
+            padding: 10px;
+            background-color: #dac9df;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .logo-container img {
+            width: 80px;
+            height: 80px;
+            display: block;
+            margin: 1px auto;
+            opacity: 1;
+        }
+        h4 {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 1px;
+            opacity: 0.5;
+        }
+        
+        h2 {
+            color: #6a11cb;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #6a11cb;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #2575fc;
+        }
+
+        .view-password-btn {
+            background-color: transparent;
+            color: #6a11cb;
+            border: none;
+            font-size: 12px;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 12px;
+            margin-top: 3px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo-container">
+            <img src="Chatbot.png.png" alt="NexusAI Logo">
+            <h4>Nexus AI</h4>
+        </div>
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button class="view-password-btn" type="button" onclick="togglePassword()">View Password</button>
+        <br><br><br><br><br><br>
+        <button onclick="login()">Login</button>
+        <p class="error-message" id="error-message" style="display:none;" >Invalid username or password.</p>
+    </div>
+
+    <script>
+        function login() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            // Sample login credentials
+            const correctUsername = "nexus";
+            const correctPassword = "nexus123";
+
+            if (username === correctUsername && password === correctPassword) {
+                alert("Login Successful!");
+                // Redirect to chat page or further action
+                window.location.href = "Interface 1.html"; // Replace with the URL of your chat page
+            } else {
+                // Show error message if credentials are incorrect
+                document.getElementById("error-message").style.display = "block";
+            }
+        }
+
+        // Function to toggle password visibility
+        function togglePassword() {
+            const passwordField = document.getElementById("password");
+            const passwordType = passwordField.type;
+
+            // Toggle password visibility
+            if (passwordType === "password") {
+                passwordField.type = "text";
+            } else {
+                passwordField.type = "password";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus AI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+        }
+        
+        
+        h4 {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 1px;
+            opacity: 0.10;
+        }
+        h6{
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 1px;
+            opacity: 0.10;
+        }
+        .logo-container img {
+            width: 50px;
+            height: 50px;
+            display: block;
+            margin: 1px auto;
+            opacity: 0.5;
+        }
+
+        .chat-container {
+            height: 460px;
+            width: 230px;
+            background-color: #dac9df;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+
+        .chat-box {
+            height: 390px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #dac9df;
+            animation: slideIn 1s ease-in-out;
+        }
+        
+
+        .chat-box .user-message, .chat-box .bot-message {
+            margin: 10px 0;
+            opacity: 0;
+            animation: fadeInMessage 0.5s forwards;
+        }
+
+        .chat-box .user-message {
+            color: #010005;
+            text-align: right;
+            animation-delay: 0.2s;
+        }
+
+        .chat-box .bot-message {
+            text-align: left;
+            color: #6a11cb;
+            animation-delay: 0.6s;
+        }
+
+        input[type="text"] {
+            background-color: #dac9df;
+            width: calc(100% - 60px);
+            padding: 10px;
+            border: 1px solid #5a4d79;
+            border-radius: 5px;
+            margin-right: 10px;
+            transition: 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #1100ff;
+        }
+
+        button {
+            padding: 10px 7px;
+            border: 1px color #000000;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            background-color: white;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0021b3;
+        }
+
+        .input-container {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            0% { transform: translateY(-20px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeInMessage {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    
+    <div class="chat-container">
+        <div class="chat-box" id="chat-box">
+            <!-- Conversation messages will appear here -->
+            <div class="logo-container">
+                <img src="Chatbot.png.png" alt="NexusAI Logo">
+                <h4>NexusAI</h4>
+                <H6>1.0.0</H6>
+            </div>
+        </div>
+        <div class="input-container">
+            <input type="text" id="user-input" placeholder="Type a message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        // Function to simulate bot's response
+        function botResponse(userMessage) {
+            const responses = {
+                "hi": "Hello! How can I help you today?",
+                "Hi": "Hello! How can I help you today?",
+                "hello": "hi! how can i help you today?",
+                "Hello": "hi! how can i help you today?",
+                "how are you": "I'm doing great, thank you!",
+                "How are you": "I'm doing great, thank you!",
+                "what is your name": "My Creaters calls me Nexus AI.",
+                "What is your name": "My Creaters calls me Nexus AI.",
+                "who are you": "I am Nexus AI, Your Personel AI ChatBot",
+                "Who are you": "I am Nexus AI, Your Personel AI ChatBot",
+                "Whatsup": "I am Great What about You !",
+                "whatsup": "I am Great What about You !",
+                "I am Good": "Good to Hear that",
+                "i am Good": "Good to Hear that",
+                "bye": "Goodbye, its my honor to talk with you! Have a great day!",
+                "Bye": "Goodbye, its my honor to talk with you! Have a great day!",
+                "who is your creator": "My Creators are Four Students from VSBM",
+                "Who is your creator": "My Creators are Four Students from VSBM",
+                "What is operating system": "An Operating System (OS) is system software that manages computer hardware and software resources while providing essential services for computer programs. It acts as an intermediary between users and the computer hardware, ensuring efficient execution of programs.",
+                "what is operating system": "An Operating System (OS) is system software that manages computer hardware and software resources while providing essential services for computer programs. It acts as an intermediary between users and the computer hardware, ensuring efficient execution of programs.",
+                "what is database": "A Database is an organized collection of data that is stored, managed, and accessed electronically. It allows users to efficiently store, retrieve, modify, and manipulate data in a structured way.",
+                "What is database": "A Database is an organized collection of data that is stored, managed, and accessed electronically. It allows users to efficiently store, retrieve, modify, and manipulate data in a structured way.",
+                "who is the father of computer": "The Father of the Computer is Charles Babbage.",
+                "Who is the father of computer": "The Father of the Computer is Charles Babbage.",
+            };
+            return responses[userMessage.toLowerCase()] || "I'm sorry, I didn't understand that.";
+        }
+
+        // Function to send message
+        function sendMessage() {
+            const userInput = document.getElementById("user-input").value;
+            if (userInput.trim() === "") return;
+
+            // Display user message with animation
+            const chatBox = document.getElementById("chat-box");
+            const userMessageDiv = document.createElement("div");
+            userMessageDiv.classList.add("user-message");
+            userMessageDiv.textContent = userInput;
+            chatBox.appendChild(userMessageDiv);
+
+            // Display bot response after a delay with animation
+            setTimeout(() => {
+                const botMessage = botResponse(userInput);
+                const botMessageDiv = document.createElement("div");
+                botMessageDiv.classList.add("bot-message");
+                botMessageDiv.textContent = botMessage;
+                chatBox.appendChild(botMessageDiv);
+                
+                // Scroll to the bottom
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }, 500);
+
+            // Clear input field
+            document.getElementById("user-input").value = "";
+        }
+
+        // Optional: Allow pressing "Enter" to send message
+        document.getElementById("user-input").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>
