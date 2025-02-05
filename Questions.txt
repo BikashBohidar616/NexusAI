@@ -1,0 +1,14 @@
+questions that you can ask
+ 
+"hi"
+"hello"
+"how are you"
+"what is your name"
+"who are you"
+"who is your creator"
+"what is database"
+"who is the father of computer"
+"what is operating system"
+"Whatsup"
+"I am Good"
+"bye"
